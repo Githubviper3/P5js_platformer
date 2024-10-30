@@ -1,1 +1,2 @@
-add libraries and extensions
+Add collisions detection and player
+finalise using rect class instead of square
