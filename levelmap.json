@@ -3,8 +3,8 @@
     {
         "type":"ground",
         "data":[
-            {"color":[211,132,253],"pos":[0,350],"border":2},
-            {"color":"Blue","pos":[150,350],"size":[150,50]}
+            {"color":[211,132,253],"position":[0,350],"size":[200,50]},
+            {"color":"Blue","position":[200,350],"size":[150,50]}
             ]
     }
 ]
