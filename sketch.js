@@ -4,7 +4,6 @@ import Player from "./Player.js";
 import Rect from "./Rect.js";
 
 let gamedata= generatelevel(file);
-console.log(gamedata)
 
 let player, ground = [];
 let canvaswidth = 400;
