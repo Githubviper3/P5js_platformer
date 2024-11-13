@@ -1,4 +1,6 @@
-let tilemap,game_data;
+
+
+let tilemap,game_data={};
 function generatelevel(file){
     tilemap =  JSON.parse(JSON.stringify(file));
     game_data= {}
@@ -8,4 +10,4 @@ function generatelevel(file){
     return game_data
 }
 
-export  {generatelevel};
+export {generatelevel}

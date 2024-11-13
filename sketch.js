@@ -1,17 +1,22 @@
 import file from "./levelmap.json" with { type: "json" };
-import { generatelevel } from "./tilemap.js";
-let canvaswidth = 400;
-let gamedata= generatelevel(file);
+import { generatelevel } from "./Tilemap.js";
+// import Player from "./Player.js";
+// import Rect from "./Rect.js";
 
+let gamedata= generatelevel(file);
+console.log(gamedata)
+
+let player, ground = [];
+let canvaswidth = 400;
 class Rect {
-  constructor(pos, size, color = [23, 23, 65], border = false, borderRadius = [0, 0, 0, 0]) {
-    this.pos = [this.x, this.y] = pos;  
+  constructor(pos, size, color = [23, 23, 65], P5, borderRadius = [0, 0, 0, 0]) {
+    this.parent = P5
+    [this.x, this.y] = pos;  
     this.top = this.y;        
     this.left = this.x;
     [this.width, this.height] = size;
     this.bottom = this.top + this.height;
     this.right = this.left + this.width;   
-    this.strokeWeight = Number(border);
     this.borderRadii = borderRadius;
     [this.borderRadii_tl, this.borderRadii_tr, this.borderRadii_br, this.borderRadii_bl] = borderRadius;
     this.color = color;
@@ -37,33 +42,35 @@ class Rect {
     this.right = this.left + this.width;  
   }
 
-  draw() {
+  draw(P5) {
     this.update();
-    fill(this.color);
-    strokeWeight(this.strokeWeight);
-    rect(this.x, this.y, this.width, this.height, ...this.borderRadii); // Use rect for squares
+    this.parent.fill(this.color);
+    console.log(this.x)
+    P5.rect(this.x, this.y, this.width, this.height, ...this.borderRadii); // Use rect for squares
+  
   }
 }
 
 class Player {
-  constructor(pos, size = [50,50], color = "Red") {
+  constructor(pos, size = [50,50], color = "Red",P5) {
     [this.x, this.y] = pos;
+    this.parent = P5
     this.size = size;
-    this.rect = new Rect([this.x, this.y], this.size, color, 2); // Use the Rect class to represent the player
+    this.rect = new Rect([this.x, this.y], this.size, color,P5); // Use the Rect class to represent the player
   }
 
-  update() {
+  update(P5) {
     // Move player using arrow keys
-    if (keyIsDown(UP_ARROW)) {
+    if (this.parent.keyIsDown(UP_ARROW)) {
       this.y -= 1;
     }
-    if (keyIsDown(RIGHT_ARROW)) {
+    if (this.parent.keyIsDown(P5.RIGHT_ARROW)) {
       this.x += 1;
     }
-    if (keyIsDown(LEFT_ARROW)) {
+    if (this.parent.keyIsDown(LEFT_ARROW)) {
       this.x -= 1;
     }
-    if (keyIsDown(DOWN_ARROW)) {
+    if (this.parent.keyIsDown(DOWN_ARROW)) {
       this.y += 1;
     }
 
@@ -76,30 +83,23 @@ class Player {
   }
 }
 
-let player, ground = [];
-
-function setup() {
-  createCanvas(canvaswidth, canvaswidth);
-  background(220);
+new p5(function(p5){
+p5.setup = function() {
+  p5.createCanvas(canvaswidth, canvaswidth);
+  p5.background(220);
   
-  // Create a green square as the background obstacle
   for (let i = 0; i < canvaswidth / 50; i++) {
-    ground.push(new Rect([i * 50, 350], [50,50], "green"));
+    ground.push(new Rect([i * 50, 350], [50,50], "green",p5));
   }
   
-  player = new Player([0, 300]);
+  player = new Player([0, 300],[50,50],"Red",p5);
 }
 
-
-function draw() {
-  background(220);
+ p5.draw = function() {
+  p5.background(220);
  
-  // Update and draw the player
-  
-
-  // Draw the green square ground
   ground.forEach(groundrect => {
-    groundrect.draw();
+    groundrect.draw(p5);
   });
   player.update();
   ground.forEach(groundrect => {
@@ -108,4 +108,4 @@ function draw() {
     }
   });
 
-}
+}})
