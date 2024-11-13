@@ -1,0 +1,10 @@
+[
+    {"type":"player","data":{"pos":[0, 300]}},
+    {
+        "type":"ground",
+        "data":[
+            {"color":[211,132,253],"pos":[0,350],"border":2},
+            {"color":"Blue","pos":[150,350],"size":[150,50]}
+            ]
+    }
+]
