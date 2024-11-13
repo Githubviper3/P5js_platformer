@@ -1,4 +1,4 @@
-// import Rect from "./Rect.js";
+import Rect from "./Rect.js";
 export default class Player {
     constructor(pos, size = [50,50], color = "Red",P5) {
       [this.x, this.y] = pos;
