@@ -4,4 +4,6 @@ https://stackoverflow.com/questions/28739745/how-to-make-an-iterator-out-of-an-e
 Making it an iterable or somth
 sorting out imports
 https://youtu.be/P0bkwncSJag
-pass in p5js as a library every time you use p5js functions and remove this.parent
+make the level data simplified 
+{player: data,
+ground: {tilesize: 16},{data: []}}
