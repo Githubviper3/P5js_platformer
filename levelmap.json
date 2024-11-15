@@ -1,10 +1,9 @@
-[
-    {"type":"player","data":{"pos":[0, 300]}},
-    {
-        "type":"ground",
-        "data":[
-            {"color":[211,132,253],"position":[0,350],"size":[200,50]},
-            {"color":"Blue","position":[200,350],"size":[150,50]}
+{"player": {"position":[1, 29]},
+"tilesize": 16,
+ "ground": [
+    {"color":[211,132,253],"position":[0,30]},
+    {"color":"Blue","position":[1,30]}
             ]
-    }
-]
+}
+
+
