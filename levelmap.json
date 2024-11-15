@@ -1,7 +1,7 @@
 {"player": {"position":[1, 29]},
 "tilesize": 16,
  "ground": [
-    {"color":[211,132,253],"position":[0,1]},
+    {"color":[211,132,253],"position":[0,0]},
     {"color":"Blue","position":[2,29]}
             ]
 }

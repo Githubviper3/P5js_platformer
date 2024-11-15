@@ -1,7 +1,7 @@
 import Player from "../Classes/Player.js";
 import Rect from "../Classes/Rect.js";
 
-export function generatelevel(file) {
+export default function Setup(file) {
     // Initialize variables
     var tilemap, size, player, tilesize, ground_tiles = [];
     

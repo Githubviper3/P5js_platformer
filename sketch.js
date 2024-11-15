@@ -1,8 +1,8 @@
 import file from "./levelmap.json" with { type: "json" };
-import {generatelevel} from "./Level_Scripts/generatelevel.js";
+import Setup from "./Level_Scripts/Setup.js";
 
 
-let [player,ground]= generatelevel(file);
+let [player,ground]= Setup(file);
 
 
 new p5(function(p5){
