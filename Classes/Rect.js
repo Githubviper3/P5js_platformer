@@ -1,5 +1,5 @@
 export default class Rect {
-  constructor(pos, size, color, border = false, borderRadius = [0, 0, 0, 0]) {
+  constructor(pos, size = [16,16], color, border = false, borderRadius = [0, 0, 0, 0]) {
     [this.x, this.y] = pos;  
     this.top = this.y;        
     this.left = this.x;
