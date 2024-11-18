@@ -14,14 +14,4 @@ p5.setup = function() {
  p5.draw = function() {
   p5.background(220);
   game.Render(p5)
-  // ground.forEach(groundrect => {
-  //   groundrect.draw(p5);
-  // });
-  // player.update(p5);
-
-  // ground.forEach(groundrect => {
-  //   if (player.rect.colliderect(groundrect)){
-  //     console.log("boo")
-  //  }
-  // });
 }})
