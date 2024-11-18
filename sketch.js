@@ -1,7 +1,7 @@
 import file from "./levelmap.json" with { type: "json" };
 import { renderer } from "./Classes/tilemap.js";
 
-// let [player,ground]= Setup(file);
+
 let game = new renderer()
 game.Setup(file)
 

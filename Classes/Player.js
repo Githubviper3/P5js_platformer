@@ -1,7 +1,7 @@
 import Rect from "./Rect.js";
 export default class Player {
     constructor(position, size, color) {
-      [this.x, this.y] = position;
+      this.position = [this.x, this.y] = position;
       this.size = size || [8,16]
       this.color = color || "Red"
       this.direction = {'up': false, 'down': false, 'right': false, 'left': false}
@@ -34,6 +34,7 @@ export default class Player {
       // Update rect position to match player's position
       entity_rect.x = this.x;
       entity_rect.y = this.y;
+      this.position = [this.x,this.y]
       
   
       entity_rect.draw(P5,scroll_offset); // Draw the player's rectangle

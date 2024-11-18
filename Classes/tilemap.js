@@ -8,6 +8,7 @@ export class renderer{
         this.tilemap = {}
         this.player = null
         this.ground_tiles = []
+        this.initial_position = null
         
     }
     
@@ -22,9 +23,10 @@ export class renderer{
     
         this.tilesize = this.tilemap["tilesize"];
     
-    
-        var position = player_setup["position"].map(element => element * this.tilesize);
-        var size = player_setup["size"] ?? null;
+
+        let position = player_setup["position"].map(element => element * this.tilesize);
+        this.initial_position = position
+        let size = player_setup["size"] ?? null;
         var color = player_setup["color"] ?? null;
         
 
@@ -50,14 +52,14 @@ export class renderer{
     }
 
     Render(P5){
-        this.x_change = Number(this.player.direction.right)*5 - Number(this.player.direction.right)*5
-        this.y_change = Number(this.player.direction.down)*5 - Number(this.player.direction.up)*5                    
-        this.scroll = this.scroll.map((x, y) => {
-            x += this.x_change;
-            y += this.y_change;
-            return x, y; // Return the updated pair
-          });
+        console.log
+        this.x_change = this.player.position[0] - this.initial_position[0]   
+        this.y_change = this.player.position[1]  - this.initial_position[1] 
+        console.log(this.x_change,this.y_change)
+        this.scroll[0] = (this.scroll[0] + this.x_change)/30
+        this.scroll[1] += this.y_change/30
         console.log(this.scroll)
+
         this.ground_tiles.forEach(groundrect => {
             groundrect.draw(P5,this.scroll);
           });
