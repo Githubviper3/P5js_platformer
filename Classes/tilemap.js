@@ -4,7 +4,7 @@ import Rect from "../Classes/Rect.js";
 export class renderer{
     constructor(){
         this.tilesize = 0
-        this.x_change,this.y_change= this.scroll = [0,0]
+        this.scroll = [0,0]
         this.tilemap = {}
         this.player = null
         this.ground_tiles = []
@@ -52,14 +52,20 @@ export class renderer{
     }
 
     Render(P5){
-        console.log
-        this.x_change = this.player.position[0] - this.initial_position[0]   
-        this.y_change = this.player.position[1]  - this.initial_position[1] 
-        console.log(this.x_change,this.y_change)
-        this.scroll[0] = (this.scroll[0] + this.x_change)/30
-        this.scroll[1] += this.y_change/30
-        console.log(this.scroll)
+        if (this.player.direction.right){
+            this.scroll[0] -= 5
+        } 
+        if (this.player.direction.left){
+            this.scroll[0] += 5
+        }
+        if (this.player.direction.down){
+            this.scroll[1] -= 5
+        } 
+        if (this.player.direction.up){
+            this.scroll[1] += 5
+        }
 
+        
         this.ground_tiles.forEach(groundrect => {
             groundrect.draw(P5,this.scroll);
           });

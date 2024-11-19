@@ -17,19 +17,27 @@ export default class Player {
       if (P5.keyIsDown(P5.UP_ARROW)) {
         this.y -= 1;
         this.direction["up"] = true
+      } else{
+        this.direction["up"] = false
       } 
       if (P5.keyIsDown(P5.RIGHT_ARROW)) {
         this.x += 1;
         this.direction["right"] = true
-      }
+      } else{
+        this.direction["right"] = false
+      } 
       if (P5.keyIsDown(P5.LEFT_ARROW)) {
         this.x -= 1;
         this.direction["left"] = true
+      }  else{
+        this.direction["left"] = false
       } 
       if (P5.keyIsDown(P5.DOWN_ARROW)) {
         this.y += 1;
         this.direction["down"] = true
-      }
+      }  else{
+        this.direction["down"] = false
+      } 
       let entity_rect = this.rect();
       // Update rect position to match player's position
       entity_rect.x = this.x;
