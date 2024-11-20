@@ -12,7 +12,7 @@ export default class Rect {
     this.strokeWeight = Number(border);
     this.borderRadii = borderRadius;
     [this.borderRadii_tl, this.borderRadii_tr, this.borderRadii_br, this.borderRadii_bl] = borderRadius;
-    this.color = color;
+    this.color = color||"blue";
   }
 
   colliderect(rect) {
