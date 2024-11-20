@@ -1,8 +1,18 @@
-{"player": {"position":[1, 29]},
+{"player": {"position":[1, 28]},
 "tilesize": 16,
  "ground": [
     {"color":[211,132,253],"position":[0,0]},
-    {"color":"Blue","position":[2,29]}
+    {"color":"Blue","position":[0,29]},
+    {"color":"Blue","position":[1,29]},
+    {"color":"Blue","position":[2,29]},
+    {"color":"Blue","position":[3,29]},
+    {"color":"Blue","position":[4,29]},
+    {"color":"Blue","position":[5,29]},
+    {"color":"Blue","position":[7,29]},
+    {"color":"Blue","position":[8,29]},
+    {"color":"Blue","position":[9,29]},
+    {"color":"Blue","position":[10,29]},
+    {"color":"Blue","position":[11,29]}
             ]
 }
 

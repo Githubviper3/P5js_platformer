@@ -11,9 +11,10 @@ export default class Player {
     rect(){
       return new Rect([this.x, this.y], this.size, this.color, 2);
     }
-  
+
     update(P5,scroll_offset=[0,0]) {
       // Move player using arrow keys
+      
       if (P5.keyIsDown(P5.UP_ARROW)) {
         this.y -= 1;
         this.direction["up"] = true
