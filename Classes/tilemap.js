@@ -122,8 +122,8 @@ export default class Tilemap {
     this.ground_tiles.forEach((groundrect) => {
       groundrect.draw(P5, this.scroll);
     });
+    
 
-   
 
     this.player.update(P5,this.scroll);
 

@@ -11,6 +11,6 @@ p5.setup = function() {
 }
 
  p5.draw = function() {
-  p5.background("blue");
+  p5.background("gray");
   game.Render(p5)
 }})
