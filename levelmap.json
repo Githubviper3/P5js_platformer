@@ -1,19 +1,55 @@
-{"player": {"position":[1, 28]},
-"tilesize": 16,
- "ground": [
-    {"color":[211,132,253],"position":[0,0]},
-    {"color":"Blue","position":[0,29]},
-    {"color":"Blue","position":[1,29]},
-    {"color":"Blue","position":[2,29]},
-    {"color":"Blue","position":[3,29]},
-    {"color":"Blue","position":[4,29]},
-    {"color":"Blue","position":[5,29]},
-    {"color":"Blue","position":[7,29]},
-    {"color":"Blue","position":[8,29]},
-    {"color":"Blue","position":[9,29]},
-    {"color":"Blue","position":[10,29]},
-    {"color":"Blue","position":[11,29]}
-            ]
-}
-
-
+{
+        "player": {
+          "position": [2, 28]
+        },
+        "tilesize": 16,
+        "ground": [
+          {"color": "Brown", "position": [0, 29]},
+          {"color": "Brown", "position": [1, 29]},
+          {"color": "Brown", "position": [2, 29]},
+          {"color": "Brown", "position": [3, 29]},
+          {"color": "Brown", "position": [4, 29]},
+          {"color": "Brown", "position": [5, 29]},
+          {"color": "Brown", "position": [6, 29]},
+          {"color": "Brown", "position": [7, 29]},
+          {"color": "Brown", "position": [8, 29]},
+          {"color": "Brown", "position": [9, 29]},
+          {"color": "Brown", "position": [10, 29]},
+          {"color": "Brown", "position": [11, 29]},
+          {"color": "Brown", "position": [12, 29]},
+          {"color": "Brown", "position": [13, 29]},
+          {"color": "Brown", "position": [14, 29]},
+          {"color": "Brown", "position": [15, 29]},
+          {"color": "Brown", "position": [16, 29]},
+          {"color": "Brown", "position": [17, 29]},
+          {"color": "Brown", "position": [18, 29]},
+          {"color": "Brown", "position": [19, 29]},
+          {"color": "Brown", "position": [20, 29]},
+          {"color": "Brown", "position": [21, 29]},
+          {"color": "Brown", "position": [22, 29]},
+          {"color": "Brown", "position": [23, 29]},
+          {"color": "Brown", "position": [24, 29]},
+          {"color": "Brown", "position": [25, 29]},
+          {"color": "Brown", "position": [26, 29]},
+          {"color": "Brown", "position": [27, 29]},
+          {"color": "Brown", "position": [28, 29]},
+          {"color": "Brown", "position": [29, 29]},
+          {"color": "Yellow", "position": [5, 25]},  
+          {"color": "Yellow", "position": [6, 25]},  
+          {"color": "Yellow", "position": [7, 25]},  
+          {"color": "Yellow", "position": [10, 22]}, 
+          {"color": "Yellow", "position": [11, 22]}, 
+          {"color": "Yellow", "position": [12, 22]}, 
+          {"color": "Yellow", "position": [15, 19]}, 
+          {"color": "Yellow", "position": [16, 19]}, 
+          {"color": "Yellow", "position": [17, 19]}, 
+          {"color": "Green", "position": [7, 28]},  
+          {"color": "Green", "position": [7, 27]},  
+          {"color": "Green", "position": [7, 26]},  
+          {"color": "Green", "position": [7, 25]},  
+          {"color": "Green", "position": [7, 24]},  
+          {"color": "Green", "position": [7, 23]},  
+          {"color": "Green", "position": [29, 28]}   
+        ]
+      }
+      

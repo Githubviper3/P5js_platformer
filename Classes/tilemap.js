@@ -5,7 +5,7 @@ const all_offsets = [
   [-1, 0], [-1, -1], [0, -1], [1, -1], [1, 0], [0, 0], [-1, 1], [0, 1], [1, 1]
 ];
 
-export class renderer {
+export default class Tilemap {
   constructor() {
     this.tilesize = 0;
     this.scroll = [0, 0];
@@ -34,7 +34,7 @@ export class renderer {
     let size = player_setup["size"] ?? null;
     var color = player_setup["color"] ?? null;
 
-    this.player = new Player(position, size, color);
+    this.player = new Player(position, size, color,this);
 
     for (let data of ground_setup) {
       let groundSize = data["size"];
@@ -103,18 +103,18 @@ export class renderer {
     const sixSeventhHeight = 6.7 * seventhHeight;
 
     // Horizontal scroll
-    if (this.player.direction.right && this.player.x + this.scroll[0] > fourfifthWidth) {
+    if (this.player.x + this.scroll[0] > fourfifthWidth) {
       this.scroll[0] -= 1;
     }
-    if (this.player.direction.left && this.player.x + this.scroll[0] < fifthWidth) {
+    if ( this.player.x + this.scroll[0] < fifthWidth) {
       this.scroll[0] += 1;
     }
 
     // Vertical scroll
-    if (this.player.direction.down && this.player.y + this.scroll[1] > sixSeventhHeight) {
+    if (this.player.y + this.scroll[1] > sixSeventhHeight) {
       this.scroll[1] -= 1;
     }
-    if (this.player.direction.up && this.player.y + this.scroll[1] < seventhHeight) {
+    if ( this.player.y + this.scroll[1] < seventhHeight) {
       this.scroll[1] += 1;
     }
 
@@ -123,17 +123,9 @@ export class renderer {
       groundrect.draw(P5, this.scroll);
     });
 
-    let colidables = this.give_colision(this.player.position);
-    
-    
-    colidables.forEach((groundrect) => {
-      let entity = this.player.rect()
-      if (entity.colliderect(groundrect)) {
-        console.log("Collision detected!");
-      }
-    });
+   
 
-    this.player.update(P5, this.scroll);
+    this.player.update(P5,this.scroll);
 
 
     
