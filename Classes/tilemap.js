@@ -53,7 +53,7 @@ export default class Tilemap {
       this.ground_tiles.push(new Rect(groundPosition, groundSize, groundColor));
     }
 
-    // this.give_colision(this.player.position);
+
     return [this.player, this.ground_tiles];
   }
 
@@ -103,18 +103,18 @@ export default class Tilemap {
     const sixSeventhHeight = 6.7 * seventhHeight;
 
     // Horizontal scroll
-    if (this.player.x + this.scroll[0] > fourfifthWidth) {
+    if (this.player.rect.x + this.scroll[0] > fourfifthWidth) {
       this.scroll[0] -= 1;
     }
-    if ( this.player.x + this.scroll[0] < fifthWidth) {
+    if ( this.player.rect.x + this.scroll[0] < fifthWidth) {
       this.scroll[0] += 1;
     }
 
     // Vertical scroll
-    if (this.player.y + this.scroll[1] > sixSeventhHeight) {
+    if (this.player.rect.y + this.scroll[1] > sixSeventhHeight) {
       this.scroll[1] -= 1;
     }
-    if ( this.player.y + this.scroll[1] < seventhHeight) {
+    if ( this.player.rect.y + this.scroll[1] < seventhHeight) {
       this.scroll[1] += 1;
     }
 
