@@ -100,7 +100,7 @@ export default class Tilemap {
     const fifthWidth = P5.width / 5;
     const fourfifthWidth = 4 * fifthWidth;
     const seventhHeight = P5.height / 7;
-    const sixSeventhHeight = 6.7 * seventhHeight;
+    const sixSeventhHeight = 6 * seventhHeight;
 
     // Horizontal scroll
     if (this.player.rect.x + this.scroll[0] > fourfifthWidth) {
