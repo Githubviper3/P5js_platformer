@@ -6,7 +6,7 @@ export default class Player {
     this.color = color || "Red";
     this.direction = { up: false, down: false, right: false, left: false };
     this.tilemap = tilemap
-    this.rect= new Rect(position, this.size, this.color, 2); 
+    this.rect= new Rect(position, this.size, this.color); 
     this.rect.width+= 2
     this.rect.height += 2 
 
