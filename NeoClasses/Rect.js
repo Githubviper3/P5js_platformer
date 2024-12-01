@@ -1,36 +1,27 @@
 export default class Rect {
-  constructor(pos,size = [16, 16],color,border = 0,borderRadius = [0, 0, 0, 0]){
-    this.position = [this.x, this.y] = pos;
-
-    //direction to name
-    this.top = this.y;
-    this.left = this.x;
-    [this.width, this.height] = size
-    this.strokeWeight = border
-    this.width += border
-    this.height += border
-    this.centerx = this.x + this.width / 2;
-    this.centery = this.y + this.height / 2;
-    this.center = [this.centerx, this.centery];
+  constructor(pos,p5,size = [16, 16],color,border = 0,borderRadius = [0, 0, 0, 0]){
+    this.position= p5.createVector(...pos)
+    this.y = this.top = this.position.y
+    this.x = this.left = this.position.x;
     this.bottom = this.top + this.height;
     this.right = this.left + this.width;
-
+    [this.width, this.height] = size
+    this.width += border
+    this.height += border
+    this.center = this.position.copy()
+    this.center.div(2)
+    [this.centerx, this.centery] = this.center;
+    this.strokeWeight = border
     this.borderRadii = borderRadius;
     [this.borderRadii_tl,this.borderRadii_tr, this.borderRadii_br,this.borderRadii_bl] = borderRadius;
     this.color = color || "blue";
-    
   }
 
   colliderect(rect) {
-    if (
-      this.right > rect.left &&
-      this.left < rect.right &&
-      this.bottom > rect.top &&
-      this.top < rect.bottom
-    ) {
+    if (this.right > rect.left && this.left < rect.right && this.bottom > rect.top && this.top < rect.bottom) 
+      {
       return true;
     }
-
     return false;
   }
 
@@ -41,15 +32,13 @@ export default class Rect {
 
 
   update() {
-    this.top = this.y;
-    this.left = this.x;
+    this.top = this.position.y
+    this.left = this.position.x;
     this.bottom = this.top + this.height;
     this.right = this.left + this.width;
-    this.centerx = this.x + this.width/2;
-    this.centery = this.y + this.height/2;
-    this.center = [this.centerx,this.centery];
-    this.position = [this.x,this.y]
-    
+    this.center = this.position.copy()
+    this.center.div(2)
+    [this.centerx, this.centery] = this.center;
   }
 
   draw(p5, scroll_offset = [0, 0]) {
