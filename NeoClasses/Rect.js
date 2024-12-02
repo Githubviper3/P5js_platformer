@@ -1,13 +1,12 @@
 export default class Rect {
-  constructor(pos,p5,size = [16, 16],color,border = 0,borderRadius = [0, 0, 0, 0]){
-    this.position= p5.createVector(...pos)
-    this.y = this.top = this.position.y
-    this.x = this.left = this.position.x;
+  constructor(p5,position,color,size = [16, 16],border = 0,borderRadius = [0, 0, 0, 0]){
+    this.position= p5.createVector(...position)
+    this.velocity= p5.createVector(0,0)
+    this.top = this.position.y
+    this.left = this.position.x;
     this.bottom = this.top + this.height;
     this.right = this.left + this.width;
     [this.width, this.height] = size
-    this.width += border
-    this.height += border
     this.center = this.position.copy()
     this.center.div(2)
     [this.centerx, this.centery] = this.center;
@@ -25,13 +24,8 @@ export default class Rect {
     return false;
   }
 
-  
-
-    
-    
-
-
   update() {
+    this.position.add(this.velocity)
     this.top = this.position.y
     this.left = this.position.x;
     this.bottom = this.top + this.height;
@@ -45,6 +39,6 @@ export default class Rect {
     this.update()
     p5.fill(this.color);
     p5.strokeWeight(this.strokeWeight);
-    p5.rect(this.x + scroll_offset[0],this.y + scroll_offset[1],this.width,this.height,...this.borderRadii); 
+    p5.rect(this.position.x + scroll_offset[0],this.position.y + scroll_offset[1],this.width,this.height,...this.borderRadii); 
   }
 }
