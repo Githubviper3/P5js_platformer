@@ -25,6 +25,9 @@ export default class Player {
       
       if (this.rect.colliderect(rect)){
         p5.text("collision detection",50,50)
+        if (this.rect.velocity.x >0){
+          this.rect.shiftaround("left",rect)
+        }
       }
     });
   }

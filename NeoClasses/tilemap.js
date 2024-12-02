@@ -12,7 +12,7 @@ export default class Tilemap {
     this.tilemap = {};
     this.player;
     this.ground_tiles = [];
-    this.groundpositions = []; // Fixed typo here
+    this.groundpositions = [];
   }
 
   Setup(file,p5) {
@@ -84,17 +84,10 @@ export default class Tilemap {
     let vertical = (this.player.rect.position.y + this.scroll.y < seventhHeight) - (this.player.rect.position.y + this.scroll.y > sixSeventhHeight) 
     this.scroll.add(p5.createVector(horizontal,vertical))    
 
-
-    // Draw ground tiles and player
     this.ground_tiles.forEach((groundrect) => {
       groundrect.draw(p5, this.scroll.array());
     });
     
-
-
-    this.player.update(p5,this.scroll.array());
-
-
-    
+    this.player.update(p5,this.scroll.array());    
   }
 }

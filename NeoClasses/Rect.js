@@ -1,5 +1,5 @@
 export default class Rect {
-  constructor(p5,position,color,size = [16, 16],border = 0,borderRadius = [0, 0, 0, 0]){
+  constructor(p5,position,color,size = [16, 16],border = 0){
     this.position= p5.createVector(...position)
     this.velocity= p5.createVector(0,0)
     this.top = this.position.y
@@ -12,8 +12,6 @@ export default class Rect {
     this.center.div(2)
     [this.centerx, this.centery] = this.center;
     this.strokeWeight = border
-    this.borderRadii = borderRadius;
-    [this.borderRadii_tl,this.borderRadii_tr, this.borderRadii_br,this.borderRadii_bl] = borderRadius;
     this.color = color || "blue";
   }
 
@@ -36,10 +34,40 @@ export default class Rect {
     [this.centerx, this.centery] = this.center;
   }
 
+  collision(direction,rect){
+    switch(direction) {
+      case "left":
+        this.right = rect.left;
+        this.left = this.right - this.width;
+        this.x = this.left;
+        this.velocity.x = 0
+        break;
+      case "right":
+        this.left = rect.right;
+        this.right = this.left + this.width;
+        this.x = this.left;
+        this.velocity.x = 0
+        break;
+      case "up":
+        this.top = rect.bottom;
+        this.bottom = this.top + this.height;
+        this.y = this.top;
+        this.velocity.y = 0
+        break;
+      case "down":
+        this.bottom = rect.top;
+        this.top = this.bottom - this.height;
+        this.y = this.top;
+        this.velocity.y = 0
+        break;
+    }
+    
+  }
+
   draw(p5, scroll_offset = [0, 0]) {
     this.update()
     p5.fill(this.color);
     p5.strokeWeight(this.strokeWeight);
-    p5.rect(this.position.x + scroll_offset[0],this.position.y + scroll_offset[1],this.width,this.height,...this.borderRadii); 
+    p5.rect(this.position.x + scroll_offset[0],this.position.y + scroll_offset[1],this.width,this.height); 
   }
 }
