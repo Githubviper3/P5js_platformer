@@ -41,16 +41,16 @@ export default class Tilemap {
 
   tiles_around(pos) {
     let tile_pos = pos.map((element) => Math.floor(element / this.tilesize));  // Convert to tile position
+
     let tiles = [];
-    
     for (let offset of all_offsets) {
-      let checkpos = [...tile_pos];
+      let checkpos = tile_pos.slice(0,-1);
       checkpos[0] += offset[0];
       checkpos[1] += offset[1];
 
 
-
       if (this.groundpositions.some(ground => JSON.stringify(ground) === JSON.stringify(checkpos))) {
+        checkpos = checkpos.map(element => element * this.tilesize);        
         tiles.push(checkpos); 
       }
     }
@@ -68,9 +68,7 @@ export default class Tilemap {
 
 
     tiledata.forEach(data => {
-        tiles.push(new Rect(p5,data.map(element => {
-          return element * this.tilesize;
-        }))) 
+        tiles.push(new Rect(p5,data)) 
     });
 
 

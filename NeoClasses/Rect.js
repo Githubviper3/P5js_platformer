@@ -4,9 +4,10 @@ export default class Rect {
     this.velocity= p5.createVector(0,0)
     this.top = this.position.y
     this.left = this.position.x;
+    [this.width, this.height] = size
     this.bottom = this.top + this.height;
     this.right = this.left + this.width;
-    [this.width, this.height] = size
+
     this.center = this.position.copy()
     this.center.div(2)
     [this.centerx, this.centery] = this.center;
