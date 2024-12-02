@@ -6,15 +6,13 @@ const all_offsets = [
 ];
 
 export default class Tilemap {
-  constructor() {
+  constructor(p5) {
     this.tilesize = 0;
-    this.scroll = [0, 0];
+    this.scroll = p5.createVector(0, 0);
     this.tilemap = {};
-    this.player = null;
+    this.player;
     this.ground_tiles = [];
     this.groundpositions = []; // Fixed typo here
-    this.initial_position = null;
-    this.ground = 0;
   }
 
   Setup(file,p5) {
@@ -25,35 +23,19 @@ export default class Tilemap {
     var player_setup = this.tilemap["player"];
     var ground_setup = this.tilemap["ground"];
 
-    this.tilesize = this.tilemap["tilesize"];
+    this.tilesize = this.tilemap["tilesize"]
 
-    let position = player_setup["position"].map(
-      (element) => element * this.tilesize
-    );
-    this.initial_position = position;
-    let size = player_setup["size"] ?? null;
-    var color = player_setup["color"] ?? null;
+    let position = p5.createVector(...player_setup["position"]).mult(this.tilesize).array()
+  
 
-    this.player = new Player(position, size, color,this);
+    this.player = new Player(p5,this,position);
 
     for (let data of ground_setup) {
-      let groundSize = data["size"];
-
-      if (groundSize) {
-        groundSize = groundSize.map((element) => element * this.tilesize);
-      }
-
-      let groundPosition = data["position"].map(
-        (element) => element * this.tilesize
-      );
+      let groundPosition =  p5.createVector(...data["position"]).mult(this.tilesize)
       this.groundpositions.push(data["position"]);
-
-      let groundColor = data["color"] ?? null;
-
-      this.ground_tiles.push(new Rect(groundPosition, groundSize, groundColor));
+      let groundColor = data["color"];
+      this.ground_tiles.push(new Rect(p5,groundPosition.array(),groundColor));
     }
-
-
     return [this.player, this.ground_tiles];
   }
 
@@ -67,9 +49,9 @@ export default class Tilemap {
       checkpos[1] += offset[1];
 
 
-      // Compare checkpos with elements of groundpositions
+
       if (this.groundpositions.some(ground => JSON.stringify(ground) === JSON.stringify(checkpos))) {
-        tiles.push([checkpos, "ground"]);  // Push both the position and label
+        tiles.push(checkpos); 
       }
     }
 
@@ -79,17 +61,16 @@ export default class Tilemap {
 
 
 
-  give_colision(pos) {
+  give_colision(pos,p5) {
     let tiledata = this.tiles_around(pos);
 
     let tiles = [];
 
 
     tiledata.forEach(data => {
-      if (data[1] === "ground") {
-        
-        tiles.push(new Rect(data[0].map(element =>element*this.tilesize), [16, 16])); // Assuming ground tiles are 16x16 in size
-      }
+        tiles.push(new Rect(p5,data.map(element => {
+          return element * this.tilesize;
+        }))) 
     });
 
 
@@ -101,31 +82,19 @@ export default class Tilemap {
     const fourfifthWidth = 4 * fifthWidth;
     const seventhHeight = p5.height / 7;
     const sixSeventhHeight = 6 * seventhHeight;
+    let horizontal = (this.player.rect.position.x + this.scroll.x < fifthWidth) - (this.player.rect.position.x + this.scroll.x > fourfifthWidth)
+    let vertical = (this.player.rect.position.y + this.scroll.y < seventhHeight) - (this.player.rect.position.y + this.scroll.y > sixSeventhHeight) 
+    this.scroll.add(p5.createVector(horizontal,vertical))    
 
-    // Horizontal scroll
-    if (this.player.rect.x + this.scroll[0] > fourfifthWidth) {
-      this.scroll[0] -= 1;
-    }
-    if ( this.player.rect.x + this.scroll[0] < fifthWidth) {
-      this.scroll[0] += 1;
-    }
-
-    // Vertical scroll
-    if (this.player.rect.y + this.scroll[1] > sixSeventhHeight) {
-      this.scroll[1] -= 1;
-    }
-    if ( this.player.rect.y + this.scroll[1] < seventhHeight) {
-      this.scroll[1] += 1;
-    }
 
     // Draw ground tiles and player
     this.ground_tiles.forEach((groundrect) => {
-      groundrect.draw(p5, this.scroll);
+      groundrect.draw(p5, this.scroll.array());
     });
     
 
 
-    this.player.update(p5,this.scroll);
+    this.player.update(p5,this.scroll.array());
 
 
     
