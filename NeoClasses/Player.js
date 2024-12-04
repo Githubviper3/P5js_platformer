@@ -31,10 +31,10 @@ export default class Player {
       if (this.rect.colliderect(rect)){
         p5.text("collision detection",50,50)
         if (this.prev_movement.y > 0){
-          this.rect.velocity = 0
+          this.rect.velocity.y = 1
           this.rect.update("down",rect)
         } else if (this.prev_movement.y < 0){
-          this.rect.velocity = 0
+          this.rect.velocity.y = -1
           this.rect.update("up",rect)
         }
       }
