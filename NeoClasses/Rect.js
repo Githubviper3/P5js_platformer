@@ -24,12 +24,22 @@ export default class Rect {
     if (direction === "down") {
       this.bottom = rect.top;
       this.top = this.bottom - this.height;
+      
       this.position.y = this.top;
   } else if (direction === "up") {
       this.top = rect.bottom;
       this.bottom = this.top + this.height;
       this.position.y = this.top;
-  } else {
+  } else if (direction === "right") {
+    this.right = rect.left;
+    this.left = this.right - this.width;
+    this.position.x = this.left;
+  } else if (direction === "left") {
+    this.left= rect.right;
+    this.right = this.left + this.width;
+    this.position.x = this.left;
+  } 
+  else {
       this.top = this.position.y;
       this.left = this.position.x;
       this.bottom = this.top + this.height;
