@@ -1,5 +1,5 @@
-import Player from "../NeoClasses/Player.js";
-import Rect from "../NeoClasses/Rect.js";
+import Player from "./Player.js";
+import Rect from "./Rect.js";
 
 const all_offsets = [
   [-1, 0], [-1, -1], [0, -1], [1, -1], [1, 0], [0, 0], [-1, 1], [0, 1], [1, 1]
@@ -25,7 +25,7 @@ export default class Tilemap {
 
     this.tilesize = this.tilemap["tilesize"]
 
-    let position = p5.createVector(...player_setup["position"]).mult(this.tilesize).array()
+    let position = p5.createVector(...player_setup["position"]).mult(this.tilesize)
   
 
     this.player = new Player(p5,this,position);
@@ -34,14 +34,13 @@ export default class Tilemap {
       let groundPosition =  p5.createVector(...data["position"]).mult(this.tilesize)
       this.groundpositions.push(data["position"]);
       let groundColor = data["color"];
-      this.ground_tiles.push(new Rect(p5,groundPosition.array(),groundColor));
+      this.ground_tiles.push(new Rect(p5,groundPosition,groundColor));
     }
     return [this.player, this.ground_tiles];
   }
 
   tiles_around(pos) {
     let tile_pos = pos.map((element) => Math.floor(element / this.tilesize));  // Convert to tile position
-
     let tiles = [];
     for (let offset of all_offsets) {
       let checkpos = tile_pos.slice(0,-1);
@@ -50,7 +49,7 @@ export default class Tilemap {
 
 
       if (this.groundpositions.some(ground => JSON.stringify(ground) === JSON.stringify(checkpos))) {
-        checkpos = checkpos.map(element => element * this.tilesize);        
+        checkpos = checkpos.map(element => element * this.tilesize);      
         tiles.push(checkpos); 
       }
     }
@@ -68,9 +67,10 @@ export default class Tilemap {
 
 
     tiledata.forEach(data => {
-        tiles.push(new Rect(p5,data)) 
+        tiles.push(new Rect(p5,p5.createVector(data))) 
+        
     });
-
+    console.log(tiles)
 
     return tiles;
   }
@@ -80,8 +80,8 @@ export default class Tilemap {
     const fourfifthWidth = 4 * fifthWidth;
     const seventhHeight = p5.height / 7;
     const sixSeventhHeight = 6 * seventhHeight;
-    let horizontal = (this.player.rect.position.x + this.scroll.x < fifthWidth) - (this.player.rect.position.x + this.scroll.x > fourfifthWidth)
-    let vertical = (this.player.rect.position.y + this.scroll.y < seventhHeight) - (this.player.rect.position.y + this.scroll.y > sixSeventhHeight) 
+    let horizontal = 3 * (this.player.rect(p5).position.x + this.scroll.x < fifthWidth) - (this.player.rect(p5).position.x + this.scroll.x > fourfifthWidth)
+    let vertical = 3* (this.player.rect(p5).position.y + this.scroll.y < seventhHeight) - (this.player.rect(p5).position.y + this.scroll.y > sixSeventhHeight) 
     this.scroll.add(p5.createVector(horizontal,vertical))    
 
     this.ground_tiles.forEach((groundrect) => {

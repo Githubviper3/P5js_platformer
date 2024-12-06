@@ -1,6 +1,6 @@
 export default class Rect {
   constructor(p5,position,color,size = [16, 16],border = 0){
-    this.position= p5.createVector(...position)
+    this.position= position
     this.velocity= p5.createVector(0,0)
     this.top = this.position.y
     this.left = this.position.x;
@@ -20,7 +20,7 @@ export default class Rect {
   }
 
   update(direction,rect= null) {
-    this.position.add(this.velocity)
+
     if (direction === "down") {
       this.bottom = rect.top;
       this.top = this.bottom - this.height;
