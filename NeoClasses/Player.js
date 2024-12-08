@@ -17,9 +17,10 @@ export default class Player {
     let vertical = p5.keyIsDown(p5.DOWN_ARROW) - p5.keyIsDown(p5.UP_ARROW)
     let horizontal = p5.keyIsDown(p5.RIGHT_ARROW) - p5.keyIsDown(p5.LEFT_ARROW)
 
-    this.velocity.x = p5.lerp(Math.max(-3, Math.min(3, this.velocity.x + horizontal)),this.velocity.x,0.001)
-    this.velocity.y = p5.lerp(Math.max(-2, Math.min(2, this.velocity.y + vertical)),this.velocity.y,0.001)
-
+    // this.velocity.x = Math.max(-3, Math.min(3, this.velocity.x + horizontal))
+    // this.velocity.y = Math.max(-2, Math.min(2, this.velocity.y + vertical))
+    this.velocity.x = horizontal
+    this.velocity.y = vertical==-1 ? -20 : 2;
     this.position.add(this.velocity)
     let entity_rect = this.rect(p5)
 
@@ -32,7 +33,6 @@ export default class Player {
   collision(p5){
 
     let entity_rect = this.rect(p5)
-    p5.text(entity_rect.position,50,50)
     let rects = this.tilemap.give_colision(entity_rect.position.array(),p5)
     rects.forEach(rect => {
 
@@ -47,18 +47,18 @@ export default class Player {
           entity_rect.velocity.x = 0
           entity_rect.update("left",rect) 
         }
-        this.position = entity_rect.position.array()
+        this.position = entity_rect.position
         
         entity_rect = this.rect(p5)
         if (this.prev_movement.y > 0){
-          entity_rect.velocity.y = 0
+          entity_rect.velocity.y = -1
           entity_rect.update("down",rect)
         } 
         if (this.prev_movement.y < 0){
           entity_rect.velocity.y = 0
           entity_rect.update("up",rect)
         } 
-        this.position = entity_rect.position.array()
+        this.position = entity_rect.position
 
 
       }

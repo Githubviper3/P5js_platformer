@@ -67,10 +67,11 @@ export default class Tilemap {
 
 
     tiledata.forEach(data => {
-        tiles.push(new Rect(p5,p5.createVector(data))) 
+        tiles.push(new Rect(p5,p5.createVector(...data))) 
+        
         
     });
-    console.log(tiles)
+
 
     return tiles;
   }
